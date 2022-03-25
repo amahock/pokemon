@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from "react";
+import {Route,Routes} from "react-router-dom";
+import Gallary from "./Components/Gallary";
+import Home from "./Components/Home";
+import {routes} from "./Routes/routes";
+import {savedImageDetailsContext} from "./Context/PokemonGallaryContext";
 
-function App() {
+const App = () => {
+
+let savedImages = [];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <div className="App">
+        <h1>Welcome to pokemon page!!!</h1>
+        <savedImageDetailsContext.Provider value={savedImages}>
+          <div>
+            <Routes>
+              <Route exact path={routes.home} element={<Home/>}/>
+              <Route path={routes.gallary} element={<Gallary/>}/>
+            </Routes>
+          </div>
+        </savedImageDetailsContext.Provider>
+      </div>
+    </Fragment>
   );
 }
 
